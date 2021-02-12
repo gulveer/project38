@@ -23,15 +23,18 @@ backImage = loadImage("jungle.jpg");
 function setup() {
 createCanvas(400,400);
 
-back = createSprite(0,200,10,10);
-back.addImage("jungle",backImage);
-back.scale = 2;
+//back = createSprite(0,200,10,10);
+//back.addImage("jungle",backImage);
+//back.velocityX = -1;
+//back.scale = 2;
+
 
 monkey = createSprite(0,315,20,20);
 monkey.addAnimation("moving",monkey_running) ; 
 monkey.scale=0.2; 
+monkey.shapeColor = "black";
 
-ground = createSprite(200,375,4000,10);
+ground = createSprite(200,375,40000,10);
 //ground.velocityX= -4;
 
 bananaGroup = createGroup();
@@ -44,7 +47,7 @@ obstacleGroup = createGroup();
 
 
 function draw() {
-//background("black");
+background("blue");
 
 //movements to monkey
 if(keyDown("space") && monkey.y >= 100) {
@@ -68,9 +71,9 @@ monkey.collide(ground);
   
   
   
-  //if (back.x < 0) {
-  //back.x = back.width/2;
- //}
+  
+//back.x = back.width/10;
+ 
   
  camera.position.x = monkey.x;
  camera.position.y = 200;
@@ -106,19 +109,19 @@ monkey.collide(ground);
   
  
   
-  ground.visible = false;
+  //ground.visible = false;
   Food();
   obsta();
   drawSprites();  
 
-  stroke("blue");
-  textSize(20);
-  fill("blue");
-  text("score: "+ score, monkey.x, 40);
-  
   stroke("black");
   textSize(20);
   fill("black");
+  text("score: "+ score, monkey.x, 40);
+  
+  stroke("red");
+  textSize(20);
+  fill("red");
   survivalTime=frameCount;
   text("survival Time: "+ survivalTime, monkey.x,60);
   
@@ -126,11 +129,11 @@ monkey.collide(ground);
 
 function Food() {
  
-  if (frameCount % 80 === 0) {
+  if (frameCount % 50 === 0) {
     var banana = createSprite(600,120,40,10);
     banana.y = Math.round(random(120,200));
     banana.addImage(bananaImage);
-    //banana.velocityX = -4;
+    banana.velocityX = -4;
     banana.scale=0.1;
     bananaGroup.add(banana);
     bananaGroup.setLifetimeEach(200);
@@ -138,10 +141,10 @@ function Food() {
 }
 
 function obsta(){
- if (frameCount % 300 === 0) {
+ if (frameCount % 100 === 0) {
     var obstacle = createSprite(600,345,40,10);
     obstacle.addImage(obstacleImage);
-    //obstacle.velocityX = -4;
+    obstacle.velocityX = -4;
     obstacle.scale=0.15;
     obstacleGroup.add(obstacle);
     obstacleGroup.setLifetimeEach(200);
