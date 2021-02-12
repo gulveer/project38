@@ -107,7 +107,9 @@ monkey.collide(ground);
      monkey.scale = 0.1;
       }
   
- 
+      if (foodGroup.isTouching(monkey)) {
+        monkey.scale = 1;
+         }
   
   //ground.visible = false;
   Food();
