@@ -107,7 +107,7 @@ monkey.collide(ground);
      monkey.scale = 0.1;
       }
   
-      if (foodGroup.isTouching(monkey)) {
+      if (bananaGroup.isTouching(monkey)) {
         monkey.scale = 1;
          }
   
